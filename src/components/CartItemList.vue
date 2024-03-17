@@ -6,6 +6,5 @@ import CartItem from './CartItem.vue'
   <div class="flex flex-col gap-4">
     <CartItem />
     <CartItem />
-    <CartItem />
   </div>
 </template>
