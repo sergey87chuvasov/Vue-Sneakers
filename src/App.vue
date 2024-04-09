@@ -3,6 +3,7 @@ import { ref, watch, provide, computed } from 'vue'
 
 import Header from './components/Header.vue'
 import Drawer from './components/Drawer.vue'
+import Home from './pages/Home.vue'
 
 import axios from 'axios'
 
@@ -83,7 +84,9 @@ provide('cart', {
   <div class="bg-white w-4/5 m-auto rounded-xl shadow-xl mt-10">
     <Header :total-price="totalPrice" @open-drawer="openDrawer" />
 
-    <div class="p-10"></div>
+    <div class="p-10">
+      <router-view> </router-view>
+    </div>
   </div>
 </template>
 
