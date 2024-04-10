@@ -3,7 +3,6 @@ import { ref, watch, provide, computed } from 'vue'
 
 import Header from './components/Header.vue'
 import Drawer from './components/Drawer.vue'
-import Home from './pages/Home.vue'
 
 import axios from 'axios'
 
