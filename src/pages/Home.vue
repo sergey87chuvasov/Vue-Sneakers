@@ -34,7 +34,7 @@ const addToFavorite = async (item) => {
   try {
     if (!item.isFavorite) {
       const obj = {
-        favorite_id: item.id
+        item_id: item.id
       }
 
       item.isFavorite = true
@@ -57,7 +57,7 @@ const fetchFavorites = async () => {
   try {
     const { data: favorites } = await axios.get(`https://79d163bf6a39e896.mokky.dev/favorites`)
     items.value = items.value.map((item) => {
-      const favorite = favorites.find((favorite) => favorite.favorite_id === item.id)
+      const favorite = favorites.find((favorite) => favorite.item_id === item.id)
 
       if (!favorite) {
         return item

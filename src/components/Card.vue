@@ -16,6 +16,7 @@ defineProps({
     class="relative bg-white border border-slate-00 rounded-3xl p-8 cursor-pointer hover:-translate-y-2 hover:shadow-xl transition"
   >
     <img
+      v-if="onClickFavorite"
       @click="onClickFavorite"
       :src="!isFavorite ? '/like-1.svg' : '/like-2.svg'"
       alt="like"
@@ -32,6 +33,7 @@ defineProps({
       </div>
 
       <img
+        v-if="onClickAdd"
         @click="onClickAdd"
         :src="!isAdded ? '/plus.svg' : '/checked.svg'"
         alt="plus or checked"
