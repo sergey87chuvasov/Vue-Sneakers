@@ -52,12 +52,7 @@ provide('cart', {
 </script>
 
 <template>
-  <Drawer
-    v-if="drawerOpen"
-    :total-price="totalPrice"
-    :vat-price="vatPrice"
-    @create-order="createOrder"
-  />
+  <Drawer v-if="drawerOpen" :total-price="totalPrice" :vat-price="vatPrice" />
   <div class="bg-white w-4/5 m-auto rounded-xl shadow-xl mt-10">
     <Header :total-price="totalPrice" @open-drawer="openDrawer" />
 

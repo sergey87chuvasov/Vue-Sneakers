@@ -5,6 +5,8 @@ import CardList from '../components/CardList.vue'
 import axios from 'axios'
 import { inject } from 'vue'
 
+import debounce from 'lodash.debounce'
+
 const { cart, addToCart, removeFromCart } = inject('cart')
 
 const items = ref([])
@@ -26,9 +28,9 @@ const onChangeSelect = (event) => {
   filters.sortBy = event.target.value
 }
 
-const onChangeSearchInput = (event) => {
+const onChangeSearchInput = debounce((event) => {
   filters.searchQuery = event.target.value
-}
+}, 500)
 
 const addToFavorite = async (item) => {
   try {
