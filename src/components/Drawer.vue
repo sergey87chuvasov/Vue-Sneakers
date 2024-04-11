@@ -1,15 +1,41 @@
 <script setup>
+import axios from 'axios'
+import { ref, watch, provide, computed } from 'vue'
 import DrawerHead from './DrawerHead.vue'
 import CartItemList from './CartItemList.vue'
 import InfoBlock from './InfoBlock.vue'
 
 const emit = defineEmits(['createOrder'])
 
-defineProps({
+const props = defineProps({
   totalPrice: Number,
-  vatPrice: Number,
-  buttonDisabled: Boolean
+  vatPrice: Number
 })
+
+const { cart, closeDrawer } = provide('cart')
+
+const isCreatingOrder = ref(false)
+
+const createOrder = async () => {
+  try {
+    isCreatingOrder.value = true
+    const { data } = await axios.post(`https://79d163bf6a39e896.mokky.dev/orders`, {
+      items: cart.value,
+      totalPrice: props.totalPrice.value
+    })
+
+    cart.value = []
+
+    return data
+  } catch (err) {
+    console.log(err)
+  } finally {
+    isCreatingOrder.value = false
+  }
+}
+
+const cartIsEmpty = computed(() => cart.value.length === 0)
+const buttonDisabled = computed(() => isCreatingOrder.value || cartIsEmpty.value)
 </script>
 
 <template>
